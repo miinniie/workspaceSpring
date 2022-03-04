@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hanwha.myapp.dao.MemberDAO">
+	<insert id="memberInsert">
+		insert into member2(num, userid, userpwd, username, tel, email, writedate)
+		values(memsq.nextval, #{userid}, #{userpwd}, #{username}, #{tel}, #{email}, sysdate)
+	</insert>
+	<select id="memberLogin" resultType="com.hanwha.myapp.vo.MemberVO">
+		select userid, username from member2
+		where userid=#{userid} and userpwd=#{userpwd}
+	</select>
+	<select id="getMember" resultType="com.hanwha.myapp.vo.MemberVO">
+		select userid, username, tel, email from member2
+		where userid=#{param1}
+	</select>
+	<update id="memberUpdate">
+		update member2 set tel=#{tel}, email=#{email} where userid=#{userid} and userpwd=#{userpwd}
+	</update>
+</mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hanwha.myapp.dao.ReplyDAO">
+	<insert id="replyInsert">
+		insert into boardreply(replyno, no, coment, userid, writedate, ip)
+		values(replysq.nextVal, #{no}, #{coment}, #{userid}, sysdate, #{ip})
+	</insert>
+	<select id="replyAllSelect" resultType="com.hanwha.myapp.vo.ReplyVO">
+		select replyno, no, userid, coment, writedate from boardreply
+		where no=#{param1}
+	</select>
+	<update id="replyUpdate">
+		update boardreply set coment=#{coment} where replyno = #{replyno}
+	</update>
+	<delete id="replyDelete">
+		delete from boardreply where replyno=#{param1}
+	</delete>
+</mapper> 
